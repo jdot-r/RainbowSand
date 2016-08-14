@@ -18,12 +18,12 @@ use Meteor\Meteor;
 
 class Main extends PluginBase{
 
-	public $maxY = 15;  //Å‚‚“xiƒXƒ|[ƒ“‚Ì‚‚³‚©‚çj
-	public $minY = 10;   //Å’á‚“xiƒXƒ|[ƒ“‚Ì‚‚³‚©‚çj
-	public $distanceX = 30; //ƒXƒ|[ƒ“‚©‚ç‚Ì‹——£
-	public $distanceZ = 30; //ƒXƒ|[ƒ“‚©‚ç‚Ì‹——£
+	public $maxY = 15;  //æœ€é«˜é«˜åº¦ï¼ˆã‚¹ãƒãƒ¼ãƒ³ã®é«˜ã•ã‹ã‚‰ï¼‰
+	public $minY = 10;   //æœ€ä½Žé«˜åº¦ï¼ˆã‚¹ãƒãƒ¼ãƒ³ã®é«˜ã•ã‹ã‚‰ï¼‰
+	public $distanceX = 30; //ã‚¹ãƒãƒ¼ãƒ³ã‹ã‚‰ã®è·é›¢
+	public $distanceZ = 30; //ã‚¹ãƒãƒ¼ãƒ³ã‹ã‚‰ã®è·é›¢
 
-	private $time = 1; //–ˆ•b
+	private $time = 1; //æ¯Žç§’
 
         public function onEnable() {
 
@@ -32,7 +32,7 @@ class Main extends PluginBase{
 		$server = Server::getInstance();
 		$this->spawn = $server->getDefaultLevel()->getSpawn();
 
-		$server->getScheduler()->scheduleRepeatingTask(new MeteorTask($this),$this->time*1);
+		$server->getScheduler()->scheduleRepeatingTask(new MeteorTask($this),$this->time*15);
 
         }
 
