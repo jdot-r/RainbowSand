@@ -17,22 +17,23 @@ use pocketmine\nbt\tag\FloatTag;
 use RainbowSand\RainbowSand;
 
 class Main extends PluginBase{
+	
+	private $config = $this->getDataFolder(). "config.yml";
+	public $maxY = $config->get("maxY");
+	public $minY = $config->get("minY");
+	public $distanceX = $config->get("distanceX");
+	public $distanceZ = $config->get("distanceZ");;
 
-	public $maxY = 10;
-	public $minY = 5;
-	public $distanceX = 5;
-	public $distanceZ = 5;
-
-	private $time = 1;
+	private $time = $config->get("time");
 
         public function onEnable() {
-
-		Entity::registerEntity(RainbowSand::class,true);
+		Entity::registerEntity(RainbowSand::class, true);
 
 		$server = Server::getInstance();
-		$this->spawn = $server->getDefaultLevel()->getSpawn();
+		
+		$this->config = new Config($this->getDataFolder("config.yml", Config::YAML));
 
-		$server->getScheduler()->scheduleRepeatingTask(new SandTask($this),$this->time*15);
+		$server->getScheduler()->scheduleRepeatingTask(new SandTask($this), $this->time * 15);
 
         }
 
@@ -41,10 +42,10 @@ class Main extends PluginBase{
 
 	   $randX = null;
  	   $randZ = null;
-
-	   $sy = $this->spawn->y;
-	   $sx = $this->spawn->x;
-	   $sz = $this->spawn->z;
+	   
+	   $sx = $this->config->get("x");
+	   $sy = $this->config->get("y");
+	   $sz = $this->config->get("z");
 
  	   $n1 = $sx + $this->set($this->distanceX); 
 	   $n2 = $sz + $this->set($this->distanceZ);
