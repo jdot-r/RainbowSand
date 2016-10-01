@@ -24,7 +24,7 @@ class Main extends PluginBase{
 	public $maxY = $config->get("maxY");
 	public $minY = $config->get("minY");
 	public $distanceX = $config->get("distanceX");
-	public $distanceZ = $config->get("distanceZ");;
+	public $distanceZ = $config->get("distanceZ");
 
 	private $time = $config->get("time");
 
