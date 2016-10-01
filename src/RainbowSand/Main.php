@@ -56,6 +56,7 @@ class Main extends PluginBase{
 	   if( $n2 < $sz ){$randZ = mt_rand( $n2 , $sz);
 	   }else{ 	   $randZ = mt_rand( $sz , $n2);
 	   }
+	   $server = Server::getInstance();
 
 	   $randY = mt_rand( $sy + $this->minY , $sy + $this->maxY );
 
@@ -76,7 +77,7 @@ class Main extends PluginBase{
 			]),
 		]);
 
-		$sand = Entity::createEntity("RainbowSand",Server::getInstance()->getDefaultLevel()->getChunk($randX>>4,$randZ>>4) , $nbt);
+		$sand = Entity::createEntity("RainbowSand", $server->getDefaultLevel()->getChunk($randX>>4,$randZ>>4) , $nbt);
 
 		return $sand;
 
