@@ -20,20 +20,39 @@ use RainbowSand\RainbowSand;
 
 class Main extends PluginBase{
 	
-	private $config = $this->getDataFolder(). "config.yml";
-	public $maxY = $config->get("maxY");
-	public $minY = $config->get("minY");
-	public $distanceX = $config->get("distanceX");
-	public $distanceZ = $config->get("distanceZ");
+	public $maxY = [];
+	public $minY = [];
+	public $distanceX = [];
+	public $distanceZ = [];
 
-	private $time = $config->get("time");
+	private $time = [];
 
         public function onEnable() {
+		@mkdir($this->getDataFolder());
+		if(!file_exists($this->getDataFolder(). "/config.yml")){
+        	$config = new Config($this->getDataFolder()."config.yml", Config::YAML, array(
+                	"maxY" => "1",
+                	"minY" => "1",
+			"distanceX" => "1",
+                	"distanceZ" => "1",
+			"x" => "1",
+			"y" => "1",
+			"z" => "1",
+			"level" => "world"
+		))->getAll();
+		}
+		$this->saveDefaultConfig();
+		$maxY = $config->get("maxY");
+		$minY = $config->get("minY");
+		$distanceX = $config->get("distanceX");
+		$distanceZ = $config->get("distanceZ");
+		$sx = $config->get("x");
+		$sy $config->get("y");
+		$sz = $config->get("z");
+		$level = $config->get("level");
 		Entity::registerEntity(RainbowSand::class, true);
 
 		$server = Server::getInstance();
-		
-		$this->config = new Config($this->getDataFolder("config.yml", Config::YAML));
 		
 		$spawn = $this->getServer()->getDefaultLevel()->getLevelByName();
 
@@ -45,12 +64,10 @@ class Main extends PluginBase{
 	public function makeSand() {
 		$randX = null;
 		$randZ = null;
-	   
-	   	$sx = $this->config->get("x");
-	   	$sy = $this->config->get("y");
-	   	$sz = $this->config->get("z");
 		
-	   	if($this->config->get("level" === $this->spawn)) {
+		$level = $config->get("level");
+		
+	   	if($this->config->get("level" === ($this->spawn()))) {
 
  	   		$n1 = $sx + $this->set($this->distanceX); 
 	   		$n2 = $sz + $this->set($this->distanceZ);
@@ -82,10 +99,10 @@ class Main extends PluginBase{
 				new FloatTag("" , 90)
 			]),
 			]);
-			$sand = Entity::createEntity("RainbowSand", $server->getDefaultLevel()->getChunk($randX>>4,$randZ>>4) , $nbt);
+			$sand = Entity::createEntity("RainbowSand", $level->getChunk($randX>>4, $randZ>>4) , $nbt);
 			return $sand;
 		}
-		   }
+	}
 
 	public function set($a) {
 
