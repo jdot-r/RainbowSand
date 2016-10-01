@@ -83,7 +83,7 @@ class RainbowSand extends Entity{
 
 	public function spawnTo(Player $player){
 		$pk = new AddEntityPacket();
-		$pk->type = FallingSand::NETWORK_ID;
+		$pk->type = RainbowSand::NETWORK_ID;
 		$pk->eid = $this->getId();
 		$pk->x = $this->x;
 		$pk->y = $this->y;
