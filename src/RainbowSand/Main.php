@@ -1,6 +1,6 @@
 <?php
 
-namespace Meteor;
+namespace RainbowSand;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\Server;
@@ -14,30 +14,30 @@ use pocketmine\nbt\tag\DoubleTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\FloatTag;
 
-use Meteor\Meteor;
+use RainbowSand\RainbowSand;
 
 class Main extends PluginBase{
 
-	public $maxY = 15;  //最高高度（スポーンの高さから）
-	public $minY = 10;   //最低高度（スポーンの高さから）
-	public $distanceX = 30; //スポーンからの距離
-	public $distanceZ = 30; //スポーンからの距離
+	public $maxY = 10;
+	public $minY = 5;
+	public $distanceX = 5;
+	public $distanceZ = 5;
 
-	private $time = 1; //毎秒
+	private $time = 1;
 
         public function onEnable() {
 
-		Entity::registerEntity(Meteor::class,true);
+		Entity::registerEntity(RainbowSand::class,true);
 
 		$server = Server::getInstance();
 		$this->spawn = $server->getDefaultLevel()->getSpawn();
 
-		$server->getScheduler()->scheduleRepeatingTask(new MeteorTask($this),$this->time*15);
+		$server->getScheduler()->scheduleRepeatingTask(new SandTask($this),$this->time*15);
 
         }
 
 
-	public function makeMeteor() {
+	public function makeSand() {
 
 	   $randX = null;
  	   $randZ = null;
@@ -76,9 +76,9 @@ class Main extends PluginBase{
 			]),
 		]);
 
-		$meteor = Entity::createEntity("Meteor",Server::getInstance()->getDefaultLevel()->getChunk($randX>>4,$randZ>>4) , $nbt);
+		$sand = Entity::createEntity("RainbowSand",Server::getInstance()->getDefaultLevel()->getChunk($randX>>4,$randZ>>4) , $nbt);
 
-		return $meteor;
+		return $sand;
 
 	}
 
