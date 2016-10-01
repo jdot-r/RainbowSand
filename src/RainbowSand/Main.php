@@ -50,7 +50,7 @@ class Main extends PluginBase{
 	   	$sy = $this->config->get("y");
 	   	$sz = $this->config->get("z");
 		
-	   	if($this->config->get("level" === $this->spawn) {
+	   	if($this->config->get("level" === $this->spawn)) {
 
  	   		$n1 = $sx + $this->set($this->distanceX); 
 	   		$n2 = $sz + $this->set($this->distanceZ);
