@@ -1,9 +1,7 @@
-# Meteor
-Randomly spawns meteors at your default spawn
+# Rainbow Sand
 
-# TODO:
-- [ ] Add a config.yml to customize your meteor shower
-- [ ] Maybe add commands
+This plugin will randomly spawn "Falling Sand Entities in a designated position
 
+Quote: "designated position" TODO
 
-Origionally made by ryu1192
+- []
