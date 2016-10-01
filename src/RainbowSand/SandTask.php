@@ -9,15 +9,15 @@ class SandTask extends PluginTask{
 
 	public function __construct($main) {
 
-		$this->m = $main;
+		$this->sand = $main;
 		parent::__construct($main);
 
 	}
 
 	public function onRun($ticks) {
 
-		$meteor = $this->m->makeMeteor();
-		$meteor->spawnToAll();
+		$sand = $this->sand->makeSand();
+		$sand->spawnToAll();
 	}
 
 }
