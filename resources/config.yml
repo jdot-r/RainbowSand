@@ -1,6 +1,10 @@
 ---
 #Position on which the sand entity will defaulty spawn
-x:
-y:
-z:
+maxY: 1
+minY: 1
+distanceX: 1
+distanceZ: 1
+x: 1
+y: 1
+z: 1
 ...
