@@ -1,11 +1,11 @@
 <?php
 
-namespace Meteor;
+namespace RainbowSand;
 
 use pocketmine\scheduler\PluginTask;
 use pocketmine\entity\Entity;
 
-class MeteorTask extends PluginTask{
+class SandTask extends PluginTask{
 
 	public function __construct($main) {
 
