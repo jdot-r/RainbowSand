@@ -1,6 +1,6 @@
-name: Meteor
-main: Meteor\Main
-version: 1.0.0
-api: [1.14.1]
+name: RainbowSand
+main: RainbowSand\Main
+version: 2.0.0
+api: [2.0.0]
 load: POSTWORLD
-author: ryu1192
+author: Skull3x
