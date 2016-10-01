@@ -14,6 +14,8 @@ use pocketmine\nbt\tag\DoubleTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\FloatTag;
 
+use pocketmine\utils\Config;
+
 use RainbowSand\RainbowSand;
 
 class Main extends PluginBase{
