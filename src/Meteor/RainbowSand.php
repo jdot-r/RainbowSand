@@ -1,6 +1,6 @@
 <?php
 
-namespace FallingSand;
+namespace RainbowSand;
 
 use pocketmine\level\format\FullChunk;
 use pocketmine\nbt\tag\CompoundTag;
@@ -9,12 +9,11 @@ use pocketmine\network\protocol\AddEntityPacket;
 use pocketmine\Player;
 use pocketmine\item\Item;
 use pocketmine\entity\Entity;
-use pocketmine\entity\Projectile;
 use pocketmine\level\Position;
 
-class FallingSand extends Projectile{
+class RainbowSand extends Entity{
 
-	const NETWORK_ID = 85;
+	const NETWORK_ID = 66;
 
 	public $width = 0.25;
 	public $length = 0.25;
