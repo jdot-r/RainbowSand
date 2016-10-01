@@ -34,6 +34,8 @@ class Main extends PluginBase{
 		$server = Server::getInstance();
 		
 		$this->config = new Config($this->getDataFolder("config.yml", Config::YAML));
+		
+		$spawn = $this->getServer()->getDefaultLevel()->getLevelByName();
 
 		$server->getScheduler()->scheduleRepeatingTask(new SandTask($this), $this->time * 15);
 
@@ -41,35 +43,36 @@ class Main extends PluginBase{
 
 
 	public function makeSand() {
-
-	   $randX = null;
- 	   $randZ = null;
+		$randX = null;
+		$randZ = null;
 	   
-	   $sx = $this->config->get("x");
-	   $sy = $this->config->get("y");
-	   $sz = $this->config->get("z");
+	   	$sx = $this->config->get("x");
+	   	$sy = $this->config->get("y");
+	   	$sz = $this->config->get("z");
+		
+	   	if($this->config->get("level" === $this->spawn) {
 
- 	   $n1 = $sx + $this->set($this->distanceX); 
-	   $n2 = $sz + $this->set($this->distanceZ);
+ 	   		$n1 = $sx + $this->set($this->distanceX); 
+	   		$n2 = $sz + $this->set($this->distanceZ);
 
-	   if( $n1 < $sx ){$randX = mt_rand( $n1 , $sx);
-	   }else{ 	   $randX = mt_rand( $sx , $n1);
-	   }
+	   		if( $n1 < $sx ){$randX = mt_rand( $n1 , $sx);
+				       }else{
+				$randX = mt_rand( $sx , $n1);
+			}
 
-	   if( $n2 < $sz ){$randZ = mt_rand( $n2 , $sz);
-	   }else{ 	   $randZ = mt_rand( $sz , $n2);
-	   }
-	   $server = Server::getInstance();
-
-	   $randY = mt_rand( $sy + $this->minY , $sy + $this->maxY );
-
-		$nbt = new CompoundTag("", [
-			"Pos" => new ListTag("Pos", [
+	   		if( $n2 < $sz ){$randZ = mt_rand( $n2 , $sz);
+	   			}else{
+				$randZ = mt_rand( $sz , $n2);
+			}
+			$server = Server::getInstance();
+			$randY = mt_rand( $sy + $this->minY , $sy + $this->maxY );
+			$nbt = new CompoundTag("", [
+				"Pos" => new ListTag("Pos", [
 				new DoubleTag("" , $randX ),
 				new DoubleTag("" , $randY ),
 				new DoubleTag("" , $randZ )
 			]),
-			"Motion" => new ListTag("Motion", [
+				"Motion" => new ListTag("Motion", [
 				new DoubleTag(""),
 				new DoubleTag(""),
 				new DoubleTag("")
@@ -78,13 +81,11 @@ class Main extends PluginBase{
 				new FloatTag(""),
 				new FloatTag("" , 90)
 			]),
-		]);
-
-		$sand = Entity::createEntity("RainbowSand", $server->getDefaultLevel()->getChunk($randX>>4,$randZ>>4) , $nbt);
-
-		return $sand;
-
-	}
+			]);
+			$sand = Entity::createEntity("RainbowSand", $server->getDefaultLevel()->getChunk($randX>>4,$randZ>>4) , $nbt);
+			return $sand;
+		}
+		   }
 
 	public function set($a) {
 
