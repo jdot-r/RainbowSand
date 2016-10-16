@@ -19,13 +19,6 @@ use pocketmine\utils\Config;
 use RainbowSand\RainbowSand;
 
 class Main extends PluginBase{
-	
-	public $maxY = [];
-	public $minY = [];
-	public $distanceX = [];
-	public $distanceZ = [];
-
-	private $time = [];
 
         public function onEnable() {
 		@mkdir($this->getDataFolder());
@@ -51,11 +44,7 @@ class Main extends PluginBase{
 		$sz = $config->get("z");
 		$level = $config->get("level");
 		Entity::registerEntity(RainbowSand::class, true);
-
 		$server = Server::getInstance();
-		
-		$spawn = $this->getServer()->getDefaultLevel()->getLevelByName();
-
 		$server->getScheduler()->scheduleRepeatingTask(new SandTask($this), $this->time * 15);
 
         }
@@ -64,20 +53,18 @@ class Main extends PluginBase{
 	public function makeSand() {
 		$randX = null;
 		$randZ = null;
-		
 		$level = $config->get("level");
-		
 	   	if($this->config->get("level" === ($this->spawn()))) {
-
  	   		$n1 = $sx + $this->set($this->distanceX); 
 	   		$n2 = $sz + $this->set($this->distanceZ);
-
-	   		if( $n1 < $sx ){$randX = mt_rand( $n1 , $sx);
+	   		if( $n1 < $sx ){
+				$randX = mt_rand( $n1 , $sx);
 				       }else{
 				$randX = mt_rand( $sx , $n1);
 			}
 
-	   		if( $n2 < $sz ){$randZ = mt_rand( $n2 , $sz);
+	   		if( $n2 < $sz ){
+				$randZ = mt_rand( $n2 , $sz);
 	   			}else{
 				$randZ = mt_rand( $sz , $n2);
 			}
@@ -105,13 +92,10 @@ class Main extends PluginBase{
 	}
 
 	public function set($a) {
-
-	 $n = mt_rand(1,2);
-
-	    if($n === 1){ return $a;
-	    }else{ return -$a;
-	    }
-
+		$n = mt_rand(1,2);
+		if($n === 1){ return $a;
+			    }else{
+			return -$a;
+		}
 	}
-
 }
