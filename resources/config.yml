@@ -10,4 +10,5 @@ z: 1
 level: world
 #Spawn Rate in seconds
 time: 1
+multipliedBy: 15
 ...
