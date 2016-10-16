@@ -31,7 +31,9 @@ class Main extends PluginBase{
 			"x" => "1",
 			"y" => "1",
 			"z" => "1",
-			"level" => "world"
+			"level" => "world",
+			"time" => "1",
+			"multipliedBy" => "15"
 		))->getAll();
 		}
 		$this->saveDefaultConfig();
@@ -43,10 +45,11 @@ class Main extends PluginBase{
 		$sy $config->get("y");
 		$sz = $config->get("z");
 		$level = $config->get("level");
+		$time = $config->get("time");
+		$multiply = $config->get("multipliedBy");
 		Entity::registerEntity(RainbowSand::class, true);
 		$server = Server::getInstance();
-		$server->getScheduler()->scheduleRepeatingTask(new SandTask($this), $this->time * 15);
-
+		$server->getScheduler()->scheduleRepeatingTask(new SandTask($this), $time * $multiply);
         }
 
 
