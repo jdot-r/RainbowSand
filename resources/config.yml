@@ -7,6 +7,7 @@ distanceZ: 1
 x: 1
 y: 1
 z: 1
+level: world
 #Spawn Rate in seconds
 time: 1
 ...
