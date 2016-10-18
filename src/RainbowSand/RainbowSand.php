@@ -36,8 +36,8 @@ class RainbowSand extends Entity{
 		$p = 143, 0, 255; //purple #8F00FF
 		
 		$dust1 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($this->x, $this->y, $this->z));
-		$dust2 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($this->x, $this->y, $this->z));
-		$dust3 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($this->x, $this->y, $this->z));
+		$dust2 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($this->x + 1, $this->y, $this->z));
+		$dust3 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($this->x + 2, $this->y, $this->z));
 		
 		$dust1->setComponents($r);
 		$dust2->setComponents($y);
