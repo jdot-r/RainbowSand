@@ -71,7 +71,7 @@ class RainbowSand extends Entity{
 		return $hasUpdate;
 	}
 	
-	public function delete($this){
+	public function delete(){
 		$this->despawnFromAll();
 		$this->setHealth(0);
 		$this->kill();
