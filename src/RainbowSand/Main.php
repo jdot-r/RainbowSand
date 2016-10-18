@@ -49,6 +49,7 @@ class Main extends PluginBase{
 		$multiply = $config->get("multipliedBy");
 		Entity::registerEntity(RainbowSand::class, true);
 		$server = Server::getInstance();
+		$spawn = $this->getServer()->getDefaultLevel()->getLevelByName();
 		$server->getScheduler()->scheduleRepeatingTask(new SandTask($this), $time * $multiply);
         }
 
@@ -56,8 +57,8 @@ class Main extends PluginBase{
 	public function makeSand() {
 		$randX = null;
 		$randZ = null;
-		$level = $config->get("level");
-	   	if($this->config->get("level" === ($this->spawn()))) {
+		$level = $this->config->get("level");
+	   	if($this->config->get("level" == ($this->spawn))) {
  	   		$n1 = $sx + $this->set($this->distanceX); 
 	   		$n2 = $sz + $this->set($this->distanceZ);
 	   		if( $n1 < $sx ){
@@ -71,7 +72,6 @@ class Main extends PluginBase{
 	   			}else{
 				$randZ = mt_rand( $sz , $n2);
 			}
-			$server = Server::getInstance();
 			$randY = mt_rand( $sy + $this->minY , $sy + $this->maxY );
 			$nbt = new CompoundTag("", [
 				"Pos" => new ListTag("Pos", [
