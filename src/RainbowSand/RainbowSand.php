@@ -35,13 +35,19 @@ class RainbowSand extends Entity{
 		$v = 75, 0, 130; //violet #4B0082
 		$p = 143, 0, 255; //purple #8F00FF
 		
-		$dust1 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($this->x, $this->y, $this->z));
-		$dust2 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($this->x + 1, $this->y, $this->z));
-		$dust3 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($this->x + 2, $this->y, $this->z));
+		$thispos0 = new Vector3($this->x, $this->y, $this->z);
 		
-		$dust1->setComponents($r);
-		$dust2->setComponents($y);
-		$dust3->setComponents($b);
+		$thispos1 = new Vector3($this->x + 1, $this->y, $this->z);
+		
+		$thispos2 = new Vector3($this->x + 2, $this->y, $this->z);
+		
+		$dust1 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($thispos0, $r, $g, $b));
+		$dust2 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($thispos1, $o, $y, $v));
+		$dust3 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($thispos2, $y, $v, $p));
+		
+		$dust1->setComponents($thispos0);
+		$dust2->setComponents($thispos1);
+		$dust3->setComponents($thispos2);
 		
 		$this->level->addParticle($dust1($this->add(
 			$this->width / 2 + mt_rand(-100, 100) / 500,
@@ -107,3 +113,4 @@ class RainbowSand extends Entity{
 		parent::spawnTo($player);
 	}
 }
+?>
