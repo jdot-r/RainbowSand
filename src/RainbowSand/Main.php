@@ -25,7 +25,7 @@ class Main extends PluginBase{
 	public function onEnable() {
 		@mkdir($this->getDataFolder());
 		if(!file_exists($this->getDataFolder(). "/config.yml")){
-        	$config = new Config($this->getDataFolder()."config.yml", Config::YAML, array(
+        	$config = new Config($this->getDataFolder()."/config.yml", Config::YAML, array(
 			"customBlock" => "false",
 			"id" => "5",
 			"damage" => "0",
