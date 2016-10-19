@@ -1,8 +1,9 @@
 ---
-#Position on which the sand entity will defaulty spawn
+#Custom block data
 customBlock: false
 id: 5
 damage: 0
+#Position on which the sand entity or custom block will defaulty spawn / fall
 maxY: 1
 minY: 1
 distanceX: 1
