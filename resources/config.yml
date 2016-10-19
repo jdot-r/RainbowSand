@@ -1,5 +1,8 @@
 ---
 #Position on which the sand entity will defaulty spawn
+customBlock: false
+id: 5
+damage: 0
 maxY: 1
 minY: 1
 distanceX: 1
