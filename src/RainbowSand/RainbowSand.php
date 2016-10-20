@@ -26,24 +26,24 @@ class RainbowSand extends Entity{
 		if($this->closed){
 			return false;
 		}
-		
-		$r = 255, 0, 0; //red #FF0000
-		$o = 255, 127, 0; //orange #FF7F00
-		$y = 255, 255, 0; //yellow #FFFF00
-		$g = 0, 255, 0; //green #FFFF00
-		$b = 0, 0, 255; //blue #0000FF
-		$v = 75, 0, 130; //violet #4B0082
-		$p = 143, 0, 255; //purple #8F00FF
-		
+		/* Keep this commented out for listing the colors
+		$r = [255, 0, 0] //red #FF0000
+		$o = [255, 127, 0]; //orange #FF7F00
+		$y = [255, 255, 0]; //yellow #FFFF00
+		$g = [0, 255, 0]; //green #FFFF00
+		$b = [0, 0, 255]; //blue #0000FF
+		$v = [75, 0, 130]; //violet #4B0082
+		$p = [143, 0, 255]; //purple #8F00FF
+		*/
 		$thispos0 = new Vector3($this->x, $this->y, $this->z);
 		
 		$thispos1 = new Vector3($this->x + 1, $this->y, $this->z);
 		
 		$thispos2 = new Vector3($this->x + 2, $this->y, $this->z);
 		
-		$dust1 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($thispos0, $r, $g, $b));
-		$dust2 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($thispos1, $o, $y, $v));
-		$dust3 = new \pocketmine\level\sound\DustParticle(new \pocketmine\math\Vector3($thispos2, $y, $v, $p));
+		$dust1 = new \pocketmine\level\particle\DustParticle(new \pocketmine\math\Vector3($thispos0), 179, 49, 44)); // RED
+		$dust2 = new \pocketmine\level\particle\DustParticle(new \pocketmine\math\Vector3($thispos1), 123, 47, 190)); // PURPLE
+		$dust3 = new \pocketmine\level\particle\DustParticle(new \pocketmine\math\Vector3($thispos2), 235, 136, 68)); // ORANGE
 		
 		$dust1->setComponents($thispos0);
 		$dust2->setComponents($thispos1);
