@@ -21,11 +21,11 @@ use RainbowSand\RainbowSand;
 use pocketmine\block\Block;
 
 class Main extends PluginBase{
-	
+
 	public function onEnable() {
 		@mkdir($this->getDataFolder());
 		if(!(file_exists($this->getDataFolder(). "/config.yml"))){
-			$config = new Config($this->getDataFolder()."/config.yml", Config::YAML, array(
+			$file = new Config($this->getDataFolder()."/config.yml", Config::YAML, array(
 				"customBlock" => "false",
 				"id" => "5",
 				"damage" => "0",
@@ -40,9 +40,9 @@ class Main extends PluginBase{
 				"time" => "1",
 				"multipliedBy" => "15"
 			));
-			$config->save();
+			$file->save();
 		}
-		$this->saveDefaultConfig();
+		$config = new Config($this->getDataFolder() . "/config.yml", Config::YAML);
 		$maxY = $config->get("maxY");
 		$minY = $config->get("minY");
 		$distanceX = $config->get("distanceX");
@@ -58,14 +58,14 @@ class Main extends PluginBase{
 		$spawn = $this->getServer()->getDefaultLevel()->getLevelByName();
 		$server->getScheduler()->scheduleRepeatingTask(new SandTask($this), $time * $multiply);
         }
-	
+
 	public function makeSand() {
 		$randX = null;
 		$randZ = null;
 		$level = $this->config->get("level");
 		$server = Server::getInstance();
 	   	if($this->config->get("level") == $server->getDefaultLevel()->getLevelByName()) {
- 	   		$n1 = $sx + $this->set($this->distanceX); 
+ 	   		$n1 = $sx + $this->set($this->distanceX);
 	   		$n2 = $sz + $this->set($this->distanceZ);
 	   		if($n1 < $sx){
 				$randX = mt_rand($n1, $sx);
