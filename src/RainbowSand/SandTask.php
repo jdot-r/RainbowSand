@@ -7,13 +7,14 @@ use pocketmine\entity\Entity;
 
 class SandTask extends PluginTask{
 
-	public function __construct($main) {
-		$this->sand = $main;
-		parent::__construct($main);
+	public function __construct($plugin) {
+		$this->plugin = $plugin;
+		parent::__construct($plugin);
 	}
 
 	public function onRun($ticks) {
-		$sand = $this->sand->makeSand();
+		$sand = $this->plugin->makeSand();
 		$sand->spawnToAll();
 	}
 }
+?>
