@@ -41,9 +41,9 @@ class RainbowSand extends Entity{
 		
 		$thispos2 = new Vector3($this->x + 2, $this->y, $this->z);
 		
-		$dust1 = new \pocketmine\level\particle\DustParticle(new \pocketmine\math\Vector3($thispos0), 255, 0, 0)); // RED
-		$dust2 = new \pocketmine\level\particle\DustParticle(new \pocketmine\math\Vector3($thispos1), 0, 255, 0)); // GREEN
-		$dust3 = new \pocketmine\level\particle\DustParticle(new \pocketmine\math\Vector3($thispos2), 0, 0, 255)); // BLUE
+		$dust1 = new \pocketmine\level\particle\DustParticle(new \pocketmine\math\Vector3($thispos0), 255, 0, 0); // RED
+		$dust2 = new \pocketmine\level\particle\DustParticle(new \pocketmine\math\Vector3($thispos1), 0, 255, 0); // GREEN
+		$dust3 = new \pocketmine\level\particle\DustParticle(new \pocketmine\math\Vector3($thispos2), 0, 0, 255); // BLUE
 		
 		$dust1->setComponents($thispos0);
 		$dust2->setComponents($thispos1);
