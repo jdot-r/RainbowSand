@@ -90,9 +90,6 @@ class Main extends PluginBase{
            				"Data" => new ByteTag("Data", $this->config->get("damage")),
            				"Owner" => new LongTag("Owner", $this),
      				]);
-				foreach($server->getOnlinePlayers() as $for){
-					$block->spawnTo($for);
-				}
 				//Save
 				$this->entityBlock = $block;
 				return $block;
@@ -115,9 +112,6 @@ class Main extends PluginBase{
 					]),
 					]);
 					$sand = Entity::createEntity("RainbowSand", $level->getChunk($randX>>4, $randZ>>4), $nbt);
-					foreach($server->getOnlinePlayers() as $for){
-						$sand->spawnTo($for);
-					}
 					return $sand;
 				}
 			}
