@@ -102,6 +102,8 @@ class Main extends PluginBase{
 				foreach($server->getOnlinePlayers() as $for){
 					$block->spawnTo($for);
 				}
+				//Save
+				$this->entityBlock = $block;
 				return $block;
 			}else{
 				if($this->config->get("customBlock" == "false" || "no")){
