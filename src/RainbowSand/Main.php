@@ -24,22 +24,23 @@ class Main extends PluginBase{
 	
 	public function onEnable() {
 		@mkdir($this->getDataFolder());
-		if(!file_exists($this->getDataFolder(). "/config.yml")){
-        	$config = new Config($this->getDataFolder()."/config.yml", Config::YAML, array(
-			"customBlock" => "false",
-			"id" => "5",
-			"damage" => "0",
-                	"maxY" => "1",
-                	"minY" => "1",
-			"distanceX" => "1",
-                	"distanceZ" => "1",
-			"x" => "1",
-			"y" => "1",
-			"z" => "1",
-			"level" => "world",
-			"time" => "1",
-			"multipliedBy" => "15"
-		))->getAll();
+		if(!(file_exists($this->getDataFolder(). "/config.yml"))){
+			$config = new Config($this->getDataFolder()."/config.yml", Config::YAML, array(
+				"customBlock" => "false",
+				"id" => "5",
+				"damage" => "0",
+                		"maxY" => "1",
+                		"minY" => "1",
+				"distanceX" => "1",
+                		"distanceZ" => "1",
+				"x" => "1",
+				"y" => "1",
+				"z" => "1",
+				"level" => "world",
+				"time" => "1",
+				"multipliedBy" => "15"
+			));
+			$config->save();
 		}
 		$this->saveDefaultConfig();
 		$maxY = $config->get("maxY");
@@ -47,7 +48,7 @@ class Main extends PluginBase{
 		$distanceX = $config->get("distanceX");
 		$distanceZ = $config->get("distanceZ");
 		$sx = $config->get("x");
-		$sy $config->get("y");
+		$sy = $config->get("y");
 		$sz = $config->get("z");
 		$level = $config->get("level");
 		$time = $config->get("time");
@@ -63,22 +64,22 @@ class Main extends PluginBase{
 		$randZ = null;
 		$level = $this->config->get("level");
 		$server = Server::getInstance();
-	   	if($this->config->get("level" == ($server->getDefaultLevel()->getLevelByName()))) {
+	   	if($this->config->get("level") == $server->getDefaultLevel()->getLevelByName()) {
  	   		$n1 = $sx + $this->set($this->distanceX); 
 	   		$n2 = $sz + $this->set($this->distanceZ);
-	   		if( $n1 < $sx ){
+	   		if($n1 < $sx){
 				$randX = mt_rand($n1, $sx);
 				       }else{
 				$randX = mt_rand($sx, $n1);
 			}
 
-	   		if( $n2 < $sz ){
+	   		if($n2 < $sz){
 				$randZ = mt_rand($n2, $sz);
 	   			}else{
 				$randZ = mt_rand($sz, $n2);
 			}
 			$randY = mt_rand($sy + $this->minY, $sy + $this->maxY);
-			if($this->config->get("customBlock") == "true" || "yes")) {
+			if($this->config->get("customBlock") == "true" || "yes"){
 				$block = Entity::createEntity("Block", $level->getChunk($randX>>4, $randZ>>4), $nbt);
 				$nbt = new CompoundTag("", [
 					"Pos" => new ListTag("Pos", [
@@ -87,18 +88,18 @@ class Main extends PluginBase{
              				new DoubleTag("", $randZ)
 				]),
 					"Motion" => new ListTag("Motion", [
-             				new DoubleTag("", 0),
-             				new DoubleTag("", 0),
-             				new DoubleTag("", 0)
+             				new DoubleTag(""),
+             				new DoubleTag(""),
+             				new DoubleTag("")
            			]),
 					"Rotation" => new ListTag("Rotation", [
-             				new FloatTag("", 0),
-             				new FloatTag("", 0)
+             				new FloatTag(""),
+             				new FloatTag("", 90)
            			]),
            				"TileID" => new IntTag("TileID", $this->config->get("id")),
            				"Data" => new ByteTag("Data", $this->config->get("damage")),
            				"Owner" => new LongTag("Owner", $this),
-     				]));
+     				]);
 				foreach($server->getOnlinePlayers() as $for){
 					$block->spawnTo($for);
 				}
@@ -106,7 +107,7 @@ class Main extends PluginBase{
 				$this->entityBlock = $block;
 				return $block;
 			}else{
-				if($this->config->get("customBlock" == "false" || "no")){
+				if($this->config->get("customBlock") == "false" || "no"){
 					$nbt = new CompoundTag("", [
 						"Pos" => new ListTag("Pos", [
 						new DoubleTag("" , $randX),
@@ -135,8 +136,9 @@ class Main extends PluginBase{
 
 	public function set($a) {
 		$n = mt_rand(1,2);
-		if($n === 1){ return $a;
-			    }else{
+		if($n === 1){
+			return $a;
+		}else{
 			return -$a;
 		}
 	}
