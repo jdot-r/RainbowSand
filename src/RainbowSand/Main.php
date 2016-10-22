@@ -45,16 +45,17 @@ class Main extends PluginBase{
 		$multiply = $config->get("multipliedBy");
 		Entity::registerEntity(RainbowSand::class, true);
 		$server = Server::getInstance();
-		$spawn = $this->getServer()->getLevel()->getDefaultLevel()->getLevelByName();
+		$spawn = $this->getServer()->getDefaultLevel();
 		$server->getScheduler()->scheduleRepeatingTask(new SandTask($this), $time * $multiply);
         }
 
 	public function makeSand() {
+		$cfg = new Config($this->getDataFolder() . "/config.yml", Config::YAML);
 		$randX = null;
 		$randZ = null;
-		$level = $this->config->get("level");
-		$server = Server::getInstance();
-	   	if($this->config->get("level") == $server->getLevel()->getDefaultLevel()->getLevelByName()) {
+		$level = $cfg->get("level");
+		$server = $this->getServer();
+	   	if($cfg->get("level") == $server->getDefaultLevel()->getSafeSpawn()) {
  	   		$n1 = $sx + $this->set($this->distanceX);
 	   		$n2 = $sz + $this->set($this->distanceZ);
 	   		if($n1 < $sx){
@@ -69,7 +70,7 @@ class Main extends PluginBase{
 				$randZ = mt_rand($sz, $n2);
 			}
 			$randY = mt_rand($sy + $this->minY, $sy + $this->maxY);
-			if($this->config->get("customBlock") == "true" || "yes"){
+			if($cfg->get("customBlock") == "true" || "yes"){
 				$block = Entity::createEntity("Block", $level->getChunk($randX>>4, $randZ>>4), $nbt);
 				$nbt = new CompoundTag("", [
 					"Pos" => new ListTag("Pos", [
@@ -86,15 +87,15 @@ class Main extends PluginBase{
              				new FloatTag(""),
              				new FloatTag("", 90)
            			]),
-           				"TileID" => new IntTag("TileID", $this->config->get("id")),
-           				"Data" => new ByteTag("Data", $this->config->get("damage")),
+           				"TileID" => new IntTag("TileID", $cfg->get("id")),
+           				"Data" => new ByteTag("Data", $cfg->get("damage")),
            				"Owner" => new LongTag("Owner", $this),
      				]);
 				//Save
 				$this->entityBlock = $block;
 				return $block;
 			}else{
-				if($this->config->get("customBlock") == "false" || "no"){
+				if($cfg->get("customBlock") == "false" || "no"){
 					$nbt = new CompoundTag("", [
 						"Pos" => new ListTag("Pos", [
 						new DoubleTag("" , $randX),
