@@ -45,7 +45,7 @@ class Main extends PluginBase {
 	public function onEnable() 
 	{
 		if(!is_dir($this->getDataFolder())) mkdir($this->getDataFolder());
-		foreach(array_keys(self::FILE) as $file) self::$updateFile($file);
+		foreach(array_keys(self::FILE) as $file) self::updateFile($file);
 		$config = yaml_parse_file($this->getDataFolder() . "config.yml");
 		self::$maxY = $config["maxY"] ?? 1;
 		self::$minY = $config["minY"] ?? 1;
