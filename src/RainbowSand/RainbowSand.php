@@ -11,7 +11,7 @@ use pocketmine\item\Item;
 use pocketmine\entity\Entity;
 use pocketmine\level\Position;
 
-class RainbowSand extends Entity{
+class RainbowSand extends Entity {
 
 	const NETWORK_ID = 66;
 
@@ -22,7 +22,8 @@ class RainbowSand extends Entity{
 	protected $gravity = 0.05;
 	protected $drag = 0.01;
 
-	public function onUpdate($currentTick){
+	public function onUpdate($currentTick) 
+	{
 		if($this->closed){
 			return false;
 		}
@@ -77,17 +78,20 @@ class RainbowSand extends Entity{
 		return $hasUpdate;
 	}
 	
-	public function delete(){
+	public function delete() 
+	{
 		$this->despawnFromAll();
 		$this->setHealth(0);
 		$this->kill();
 	}
 
-	public function sound(){
+	public function sound() 
+	{
 		return $this->level->addSound(new \pocketmine\level\sound\ExpPickupSound($this));
 	}
 
-	public function spawnTo(Player $player){
+	public function spawnTo(Player $player) 
+	{
 		$pk = new AddEntityPacket();
 		$pk->type = RainbowSand::NETWORK_ID;
 		$pk->eid = $this->getId();
@@ -113,4 +117,3 @@ class RainbowSand extends Entity{
 		parent::spawnTo($player);
 	}
 }
-?>
