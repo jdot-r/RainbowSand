@@ -14,6 +14,6 @@ class SandTask extends PluginTask{
 
 	public function onRun($ticks) {
 		$sand = $this->plugin->makeSand();
-		$sand->spawnToAll();
+		$sand->spawnTo();
 	}
 }
